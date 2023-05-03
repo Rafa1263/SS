@@ -73,7 +73,7 @@ export class AuthService {
 
   // FUNCIÓN PARA OBTENER LOS USUARIOS Y ALMACENARLOS EN LA VAR PRIVADA
   public getUsers(): Observable<void> {
-    return this.http.get<User[]>(`${this.CONFIG_URL}/users.json`)
+    return this.http.get<User[]>(`${this.CONFIG_URL}/users`)
       .pipe(map(((users: User[]) => {
         this.users = users
       })))
@@ -86,12 +86,12 @@ export class AuthService {
 
   // FUNCIÓN PARA HACER POST DE UN USUARIO
   public postUser(user: User): Observable<User> {
-    return this.http.post<User>(`${this.CONFIG_URL}`, user)
+    return this.http.post<User>(`${this.CONFIG_URL}/users`, user)
   }
 
   // FUNCIÓN PARA HACER UN PUT DE UN USUARIO
   public putUser(user: User, index: number): void {
-    this.http.put<User>(`${this.CONFIG_URL}/users/${index}.json`, user).subscribe(() => {
+    this.http.put<User>(`${this.CONFIG_URL}/users/${index}`, user).subscribe(() => {
 
     })
   }
